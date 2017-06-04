@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:dataTable value="#{vuelosBean.listaVuelos}" var="vuelo" border="1">
+                <h:column>
+                    <f:facet name="header">FLIGHT_ID</f:facet> #{vuelo.flightPK.flightId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SEGMENT_NUMBER</f:facet> #{vuelo.flightPK.segmentNumber}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ORIG_AIRPORT</f:facet> #{vuelo.origAirport.airport}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DEPART_TIME</f:facet> 
+                    <h:outputText value="#{vuelo.departTime}"> 
+                        <f:convertDateTime pattern="HH:mm dd/MM/YYYY"/>
+                    </h:outputText> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DEST_AIRPORT</f:facet> #{vuelo.destAirport.airport}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ARRIVE_TIME</f:facet> 
+                    <h:outputText value="#{vuelo.arriveTime}"> 
+                        <f:convertDateTime pattern="HH:mm dd/MM/YYYY"/>
+                    </h:outputText> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">MEAL</f:facet> #{vuelo.meal}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">FLIYING_TIME</f:facet> #{vuelo.flyingTime}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">MILES</f:facet> #{vuelo.miles}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">AIRCRAFT</f:facet> #{vuelo.aircraft}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    <h:commandButton value="Editar" action="#{vuelosModificarBean.modificarVuelo(vuelo)}"></h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"></f:facet> 
+                    <h:commandButton value="Borrar" action="#{vuelosBean.borrar(vuelo)}"></h:commandButton>
+                </h:column>
+            </h:dataTable>
+            <br/>
+            <h:commandButton value="Crear Vuelo" action="#{vuelosBean.crearVuelo()}"></h:commandButton>
+        </h:form>
+    </h:body>
+</html>
+

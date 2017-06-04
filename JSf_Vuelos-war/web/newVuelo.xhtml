@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div >
+                Id: 
+                <h:inputText value="#{vuelosBean.flightPK.flightId}" rendered="#{!vuelosBean.esEditar}"></h:inputText>
+                <h:outputText value="#{vuelosBean.vueloActual.flightPK.flightId}" rendered="#{vuelosBean.esEditar}"></h:outputText>
+            </div>
+            <div>
+                Segment_Number: 
+                <h:selectOneMenu value="#{vuelosBean.flightPK.segmentNumber}" rendered="#{!vuelosBean.esEditar}">
+                    <f:selectItem value="#{vuelosBean.vueloActual.flightPK.segmentNumber}" itemLabel="1" itemValue="1"></f:selectItem>
+                    <f:selectItem value="#{vuelosBean.vueloActual.flightPK.segmentNumber}" itemLabel="2" itemValue="2"></f:selectItem>
+                </h:selectOneMenu>
+                <h:outputText value="#{vuelosBean.vueloActual.flightPK.segmentNumber}" rendered="#{vuelosBean.esEditar}"></h:outputText>
+            </div>
+            <div>
+                Origin_Airport: 
+                <h:selectOneMenu value="#{vuelosBean.vueloActual.origAirport.airport}">
+                    <f:selectItems value="#{vuelosBean.listCity}" var="city" itemLabel="#{city.airport}" itemValue="#{city.airport}"></f:selectItems>
+                </h:selectOneMenu>
+            </div>
+            <div>
+                Depart_Time:
+                <h:inputText value="#{vuelosBean.vueloActual.departTime}">
+                    <f:convertDateTime pattern="HH:mm dd/MM/YYYY"></f:convertDateTime>
+                </h:inputText>
+            </div>
+            <div>
+                Destin_Airport: 
+                <h:selectOneMenu value="#{vuelosBean.vueloActual.destAirport.airport}">
+                    <f:selectItems value="#{vuelosBean.listCity}" var="city" itemLabel="#{city.airport}" itemValue="#{city.airport}"></f:selectItems>
+                </h:selectOneMenu>
+            </div>
+            <div>
+                Arrive_Time:
+                <h:inputText value="#{vuelosBean.vueloActual.arriveTime}">
+                    <f:convertDateTime pattern="HH:mm dd/MM/YYYY"></f:convertDateTime>
+                </h:inputText>
+            </div>
+            <div>
+                Meal:
+                <h:selectOneMenu value="#{vuelosBean.vueloActual.meal}" >
+                    <f:selectItem itemLabel='B' itemValue='B' ></f:selectItem>
+                    <f:selectItem itemLabel='D' itemValue='D'></f:selectItem>
+                    <f:selectItem itemLabel='L' itemValue='L'></f:selectItem>
+                    <f:selectItem itemLabel='S' itemValue='S'></f:selectItem>
+                </h:selectOneMenu>
+            </div>
+            <div>
+                Flying_Time: 
+                <h:inputText value="#{vuelosBean.vueloActual.flyingTime}" ></h:inputText>
+            </div>
+            <div>
+                Miles: 
+                <h:inputText value="#{vuelosBean.vueloActual.miles}" ></h:inputText>
+            </div>
+            <div>
+                Aircraft:
+                <h:selectOneMenu value="#{vuelosBean.vueloActual.aircraft}">
+                    <f:selectItem itemLabel="A320"  itemValue="A320"></f:selectItem>
+                    <f:selectItem itemLabel="B747"  itemValue="B747"></f:selectItem>
+                    <f:selectItem itemLabel="DC10"  itemValue="DC10"></f:selectItem>
+                </h:selectOneMenu>
+            </div>
+        <br/>
+        <h:commandButton value="Guardar Vuelo" action="#{vuelosModificarBean.guardarVuelo()}"></h:commandButton>
+        </h:form>
+    </h:body>
+</html>
+
